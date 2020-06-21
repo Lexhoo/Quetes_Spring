@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>The Star Wars API - People</title>
+</head>
+<body>
+<h1 th:text="${peopleInfos.name}">$name</h1>
+<h3 th:text="${peopleInfos.gender}">$gender</h3>
+<ul>
+    <li th:each="film : ${peopleInfos.films}">
+        <a th:href="${film}" th:text="${film}">$film</a>
+    </li>
+</ul>
+<a href="/">Go back</a>
+</body>
+</html>

@@ -26,7 +26,7 @@ public class WizardController {
     @Autowired
     private WizardRepository wizardRepository;
 
-    @GetMapping("/")
+    @GetMapping("")
     public String getWizards(Model out) {
 
         out.addAttribute("wizards", wizardRepository.findAll());
