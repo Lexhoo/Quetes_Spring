@@ -11,19 +11,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import javax.websocket.server.PathParam;
 
-@Controller
+@RestController
 public class SwapiController {
 
     private static final String SWAPI_URL = "https://swapi.dev/api";
     private WebClient webClient = WebClient.create(SWAPI_URL);
 
     @GetMapping("/planet")
-    public String planet(Model model, @RequestParam String id) {
+    public Planet planet(Model model, @RequestParam String id) {
         ObjectMapper objectMapper = new ObjectMapper();
         Planet planetObject = new Planet();
         // TODO : call the API and retrieve the planet
@@ -42,9 +43,8 @@ public class SwapiController {
         }  catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        model.addAttribute("planetInfos", planetObject);
 
-        return "planet";
+        return planetObject;
     }
 
     @GetMapping("/people")
